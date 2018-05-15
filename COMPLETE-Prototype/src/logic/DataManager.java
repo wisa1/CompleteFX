@@ -2,6 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import models.Sticker;
 import models.StickerCategory;
 import models.TradeOffer;
@@ -13,5 +14,5 @@ public interface DataManager {
 	public ArrayList<StickerCategory> getStickerCategories();
 	//public ArrayList<Sticker> getAllStickers();
 	public ArrayList<Sticker> getStickersByCategoryId(int categoryId);
-	public ArrayList<TradeOffer> getOpenOffersByUsername(String username);
+	public ObservableList<TradeOffer> getOpenOffersByUserId(int userId);
 }

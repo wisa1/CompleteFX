@@ -2,6 +2,8 @@ package logic;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Sticker;
 import models.StickerCategory;
 import models.TradeOffer;
@@ -66,8 +68,8 @@ public class MockDataManager implements DataManager  {
 	}
 
 	@Override
-	public ArrayList<TradeOffer> getOpenOffersByUsername(String username) {
-		ArrayList<TradeOffer> offers = new ArrayList<>();
+	public ObservableList<TradeOffer> getOpenOffersByUserId(int userId) {
+		ObservableList<TradeOffer> offers  = FXCollections.observableArrayList();
 		ArrayList<Sticker> offered = new ArrayList<>();
 		ArrayList<Sticker> wanted = new ArrayList<>();
 		
@@ -77,7 +79,7 @@ public class MockDataManager implements DataManager  {
 		wanted.add(new Sticker(12, "Stephen Orsini", 1));
 		wanted.add(new Sticker(16, "Nelson Amaker", 1));
 		
-		offers.add(new TradeOffer(1, 1,2, offered, wanted));
+		offers.add(new TradeOffer(1, 1, 2, offered, wanted));
 		return offers;
 	}
 
