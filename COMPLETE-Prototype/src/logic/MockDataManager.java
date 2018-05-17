@@ -89,5 +89,10 @@ public class MockDataManager implements DataManager  {
 		if(id == 2) return new User(2, "Franz", "", "","","","");
 		return null;
 	}
+
+	@Override
+	public Boolean authenticate(String username, String password) {
+		return true;
+	}
 	
 }

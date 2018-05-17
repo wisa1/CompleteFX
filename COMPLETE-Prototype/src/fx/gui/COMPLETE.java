@@ -1,6 +1,8 @@
 package fx.gui;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
@@ -15,9 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import logic.DataManager;
+import logic.DataManagerFactory;
 
 public class COMPLETE extends Application {
-
+	BorderPane rootPane;
 
 	private static final Border DEFAULT_BORDER = 
 			new Border(
@@ -41,24 +45,43 @@ public class COMPLETE extends Application {
 				
 		//Top Part
 		Pane banner = createTextBanner("COMPLETE - Tauschbörse", 800, 50);
-		BorderPane rootPane = new BorderPane();
+		rootPane = new BorderPane();
 		rootPane.setTop(banner);
 		rootPane.setBorder(DEFAULT_BORDER);
 		
-		//Navigation pane
-		BorderPane contPane = new MainPane();
-		HBox.setHgrow(contPane, Priority.ALWAYS);
-		rootPane.setCenter(contPane);
+		AuthentificationPane auth = new AuthentificationPane();
+		rootPane.setCenter(auth);
+		auth.loginButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				DataManager dataManager = DataManagerFactory.getInstance();
+				if(dataManager.authenticate(auth.userNameText.getText(), auth.passwordText.getText())) {
+					loadMainContent();
+				}
+				
+			}
+		});
+		
+		
+
+		
 		
 		Scene scene = new Scene(rootPane);
 		
-		BorderPane mainContent = new BorderPane();
-		mainContent.setTop(new MainPane());
+		//BorderPane mainContent = new BorderPane();
+		//mainContent.setCenter(new MainPane());
 				
 		primaryStage.setScene(scene);
 		
 		
 		primaryStage.show(); 
+	}
+
+	protected void loadMainContent() {
+		//Navigation pane
+		BorderPane contPane = new MainPane();
+		HBox.setHgrow(contPane, Priority.ALWAYS);
+		rootPane.setCenter(contPane);
 	}
 
 	private Pane createTextBanner(String text, int width, int height) {

@@ -15,4 +15,5 @@ public interface DataManager {
 	//public ArrayList<Sticker> getAllStickers();
 	public ArrayList<Sticker> getStickersByCategoryId(int categoryId);
 	public ObservableList<TradeOffer> getOpenOffersByUserId(int userId);
+	public Boolean authenticate(String username, String password);
 }

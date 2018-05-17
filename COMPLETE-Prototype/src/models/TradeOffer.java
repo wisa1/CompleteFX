@@ -17,7 +17,6 @@ public class TradeOffer {
 	
 	private SimpleIntegerProperty offeredCardCount;
 	private SimpleIntegerProperty wantedCardCount;
-	
 	private SimpleStringProperty offeredByUserName;
 	
 	public TradeOffer(int offerId, int offeredByUserId, int offeredToUserId, ArrayList<Sticker> offeredCards, ArrayList<Sticker> wantedCards) {
@@ -40,7 +39,7 @@ public class TradeOffer {
 		}
 				 
 		DataManager dataManager = DataManagerFactory.getInstance();
-		this.offeredByUserName = new SimpleStringProperty(dataManager.getUserById(1).getName());
+		this.setOfferedByUserName(dataManager.getUserById(1).getName());
 	}
 	
 	
@@ -76,13 +75,43 @@ public class TradeOffer {
 		if(this.offeredCards != null) return this.offeredCards.size();
 		return 0;
 	}
+	
+	public SimpleIntegerProperty getOfferedCardCountProperty() {
+		return this.offeredCardCount;
+	}
 
 	public int getWantedCardCount() {
-		if(this.wantedCards != null) return this.wantedCards.size();
+		if(this.wantedCards != null) {
+			this.setWantedCardCount(this.wantedCards.size()); 
+			return this.wantedCardCount.get();
+		}
 		return 0;
 	}
 
+
+	public void setOfferedCardCount(int offeredCardCount) {
+		this.offeredCardCount.set(offeredCardCount);
+	}
+	
+	public SimpleIntegerProperty getWantedCardCountProperty() {
+		return this.wantedCardCount;
+	}
+
+
+	public void setWantedCardCount(int wantedCardCount) {
+		this.wantedCardCount.set(wantedCardCount);
+	}
+
+
 	public String getOfferedByUserName() {
 		return offeredByUserName.get();
+	}
+
+	public SimpleStringProperty offeredByUserNameProperty() {
+		return this.offeredByUserName;
+	}
+
+	public void setOfferedByUserName(String offeredByUserName) {
+		this.offeredByUserName = new SimpleStringProperty(offeredByUserName);
 	}
 }
