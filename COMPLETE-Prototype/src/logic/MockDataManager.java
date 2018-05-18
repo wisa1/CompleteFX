@@ -94,5 +94,21 @@ public class MockDataManager implements DataManager  {
 	public Boolean authenticate(String username, String password) {
 		return true;
 	}
+
+	@Override
+	public ObservableList<User> getAllUsers() {
+		ObservableList<User> retList = FXCollections.observableArrayList();
+		retList.add(this.getUserById(1));
+		retList.add(this.getUserById(2));
+		return retList;
+	}
+
+	@Override
+	public ObservableList<User> getPotentialPartners(User forUser) {
+		ObservableList<User> retList = FXCollections.observableArrayList();
+		retList.add(this.getUserById(1));
+		retList.add(this.getUserById(2));
+		return retList;
+	}
 	
 }

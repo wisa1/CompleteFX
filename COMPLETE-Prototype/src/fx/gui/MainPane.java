@@ -63,7 +63,7 @@ public class MainPane extends BorderPane {
 	}
 
 	protected void loadPartner() {
-		// TODO Auto-generated method stub
+		this.setCenter(new PartnerPane());
 		
 	}
 
