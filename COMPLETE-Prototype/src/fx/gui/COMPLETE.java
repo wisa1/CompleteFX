@@ -19,9 +19,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.DataManager;
 import logic.DataManagerFactory;
+import models.User;
 
 public class COMPLETE extends Application {
 	BorderPane rootPane;
+	User loggedInUser;
 
 	private static final Border DEFAULT_BORDER = 
 			new Border(
@@ -57,6 +59,7 @@ public class COMPLETE extends Application {
 				DataManager dataManager = DataManagerFactory.getInstance();
 				if(dataManager.authenticate(auth.userNameText.getText(), auth.passwordText.getText())) {
 					loadMainContent();
+					loggedInUser = dataManager.getUserByName(auth.userNameText.getText());
 				}
 				
 			}

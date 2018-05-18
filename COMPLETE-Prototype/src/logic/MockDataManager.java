@@ -110,5 +110,11 @@ public class MockDataManager implements DataManager  {
 		retList.add(this.getUserById(2));
 		return retList;
 	}
+
+	@Override
+	public User getUserByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

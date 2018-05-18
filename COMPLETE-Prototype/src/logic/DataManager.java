@@ -18,4 +18,5 @@ public interface DataManager {
 	public Boolean authenticate(String username, String password);
 	public ObservableList<User> getAllUsers();
 	public ObservableList<User> getPotentialPartners(User forUser);
+	public User getUserByName(String name);
 }
