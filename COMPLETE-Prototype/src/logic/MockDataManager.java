@@ -91,8 +91,8 @@ public class MockDataManager implements DataManager  {
 	}
 
 	@Override
-	public Boolean authenticate(String username, String password) {
-		return true;
+	public int authenticate(String username, String password) {
+		return 1;
 	}
 
 	@Override

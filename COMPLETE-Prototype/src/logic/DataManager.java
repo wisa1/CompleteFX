@@ -15,7 +15,7 @@ public interface DataManager {
 	//public ArrayList<Sticker> getAllStickers();
 	public ArrayList<Sticker> getStickersByCategoryId(int categoryId);
 	public ObservableList<TradeOffer> getOpenOffersByUserId(int userId);
-	public Boolean authenticate(String username, String password);
+	public int authenticate(String username, String password);
 	public ObservableList<User> getAllUsers();
 	public ObservableList<User> getPotentialPartners(User forUser);
 	public User getUserByName(String name);

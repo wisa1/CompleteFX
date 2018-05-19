@@ -6,14 +6,16 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import models.User;
 
 public class MainPane extends BorderPane {
 	Pane navPane;
 	ToggleButton albumButton;
 	ToggleButton offersButton;
 	ToggleButton partnerButton;
+	User loggedInUser;
 	
-	public MainPane() {
+	public MainPane(User loggedInUser) {
 		createNavPane();
 		this.setTop(navPane);	
 	}
@@ -31,8 +33,6 @@ public class MainPane extends BorderPane {
 		albumButton.setToggleGroup(tgroup);
 		offersButton.setToggleGroup(tgroup);
 		partnerButton.setToggleGroup(tgroup);
-		
-		
 		
 		albumButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
@@ -63,8 +63,7 @@ public class MainPane extends BorderPane {
 	}
 
 	protected void loadPartner() {
-		this.setCenter(new PartnerPane());
-		
+		this.setCenter(new PartnerPane(loggedInUser));	
 	}
 
 	protected void loadOffers() {

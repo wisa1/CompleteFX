@@ -57,17 +57,11 @@ public class COMPLETE extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				DataManager dataManager = DataManagerFactory.getInstance();
-				if(dataManager.authenticate(auth.userNameText.getText(), auth.passwordText.getText())) {
-					loadMainContent();
-					loggedInUser = dataManager.getUserByName(auth.userNameText.getText());
-				}
-				
+				int userId = dataManager.authenticate(auth.userNameText.getText(), auth.passwordText.getText());
+				loggedInUser = dataManager.getUserById(userId);
+				loadMainContent();
 			}
 		});
-		
-		
-
-		
 		
 		Scene scene = new Scene(rootPane);
 		
@@ -82,7 +76,7 @@ public class COMPLETE extends Application {
 
 	protected void loadMainContent() {
 		//Navigation pane
-		BorderPane contPane = new MainPane();
+		BorderPane contPane = new MainPane(loggedInUser);
 		HBox.setHgrow(contPane, Priority.ALWAYS);
 		rootPane.setCenter(contPane);
 	}
